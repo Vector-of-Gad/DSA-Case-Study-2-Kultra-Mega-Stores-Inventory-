@@ -7,3 +7,8 @@ The primary goal of this project was to uncover actionable insights that could h
 2. SQL (Structured Query Language): To query, transform, and analyze the data.
 3. Data Analysis Techniques: Including grouping, aggregation, and filtering.
 ## DATASET DESCRIPTION 
+The dataset given by the store include:
+-  Order Details: Row ID,	Order ID,	Order Date,	Order Priority,	Order Quantity,	Sales	Discount	
+-  Shipping Details: Ship Mode,	Profit,	Unit Price,	Shipping Cost,	Customer Name,	Province,	Region,	Customer Segment,	Ship Date
+-  Product Details: Product Category,	Product Sub-Category,	Product Name,	Product Container,	Product Base Margin
+#ANALYSIS TASKS
