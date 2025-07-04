@@ -30,9 +30,10 @@ CASE SCENARIO 1
 ## DATA ANALYSIS PROCESSES
 There was inconsistency in the raw data number of rows in Excel and in MYSQL. It was found out that a particular column has many blank values. 
 1. Data Cleaning: To improve the data integrity, the column with blank values was deleted using excel and this is because the column wasn't needed in the main analysis.
-2. 
+2. Heading Changing: The data given has heading that are not suitable or easily analysed in MYSQL, hence some headings was changed such that space " " was substituted with underscore "_". This was done in Excel.
+3. Data Query and Analysis: MYSQL was used to query data and perform the required data analysis.
 ## ANSWERS TO TASK
-##Question 1: Which product category had the highest sales?
+## Question 1: Which product category had the highest sales?
 ```
 SELECT product_category, SUM(sales) AS Total_sales
 FROM kms_table
@@ -44,4 +45,39 @@ RESULT
 product_category | total_sales
 -----------------+-------------
 Technology       | 5984248.18
+```
+## Question 2: What are the Top 3 and Bottom 3 regions in terms of sales?
+Top 3
+```
+-- Top 3
+SELECT region, SUM(sales) AS Total_sales
+FROM kms_table
+GROUP BY Region
+ORDER BY total_sales DESC
+LIMIT 3; -- Answer: Top 3 regions in terms of sales are the West, Ontario and Prarie region
+```
+RESULT
+```
+region             | total_sales
+-------------------+--------------
+West               | 3597549.2755
+Ontario            | 3063212.4795
+Prarie             | 2837304.6015
+```
+Bottom 3
+```
+-- Bottom 3
+SELECT region, SUM(sales) AS Total_sales
+FROM kms_table
+GROUP BY Region
+ORDER BY total_sales ASC
+LIMIT 3; -- Answer: Bottom 3 regions in terms of sales are Nunavut, Northwest Territories, and Yukon
+```
+RESULT
+```
+region                  | total_sales
+------------------------+--------------
+Nunavut                 | 116376.4835
+Northwest Territories   | 800847.3295
+Yukon                   | 975867.3710
 ```
