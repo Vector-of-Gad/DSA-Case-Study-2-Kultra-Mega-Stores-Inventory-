@@ -31,7 +31,7 @@ CASE SCENARIO 1
 There was inconsistency in the raw data number of rows in Excel and in MYSQL. It was found out that a particular column has many blank values. 
 1. Data Cleaning: To improve the data integrity, the column with blank values was deleted using excel and this is because the column wasn't needed in the main analysis.
 2. Heading Changing: The data given has heading that are not suitable or easily analysed in MYSQL, hence some headings was changed such that space " " was substituted with underscore "_". This was done in Excel.
-3. Calculated Column: Required column needed for analysis that was not primarity from the table was derived; such as Revenue (unit price * order quantity)
+3. Calculated Column: Required column needed for analysis that was not primarity from the table was derived; such as Revenue (unit price * order quantity), Order_year
 4. Data Query and Analysis: MYSQL was used to query data and perform the required data analysis.
 ## ANSWERS TO TASK
 ## Question 1: Which product category had the highest sales?
@@ -170,3 +170,43 @@ Roy Skaria
 Alejandro Grove
 ```
 ## Question 7: Which small business customer had the highest sales?
+```
+SELECT customer_name, SUM(sales) AS Total_sales
+FROM kms_table
+WHERE customer_segment = 'Small Business'
+GROUP BY customer_name
+ORDER BY Total_sales DESC
+LIMIT 1; -- Answer: Dennis Kane
+```
+RESULT
+```
+customer_name | Total_sales
+--------------+---------------------
+Dennis Kane   | 75967.5905
+```
+## Question 8: Which Corporate Customer placed the most number of orders in 2009 – 2012? 
+There is no column for order year so one was created
+```
+SELECT *
+FROM kms_table;
+DESCRIBE kms_table; -- check datatype of table columns
+ALTER TABLE kms_table
+ADD Order_year VARCHAR(4); -- create new column
+UPDATE kms_table
+SET order_year = RIGHT(order_date, 4); -- insert order year to the new column
+SELECT DISTINCT (Order_year)
+FROM kms_table; -- to confirm what has been done
+-- Let's go 
+```
+Now to the number of orders:
+```
+SELECT customer_name
+FROM kms_table
+WHERE ORDER_YEAR IN ('2009', '2010', '2011', '2012') AND customer_segment = 'Corporate'
+GROUP BY customer_name
+ORDER BY SUM(Order_Quantity) DESC
+LIMIT 1; -- Answer: Roy Skaria
+```
+customer_name  
+----------------
+Roy Skaria    
