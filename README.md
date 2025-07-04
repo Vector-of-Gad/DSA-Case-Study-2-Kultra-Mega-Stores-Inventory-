@@ -31,7 +31,8 @@ CASE SCENARIO 1
 There was inconsistency in the raw data number of rows in Excel and in MYSQL. It was found out that a particular column has many blank values. 
 1. Data Cleaning: To improve the data integrity, the column with blank values was deleted using excel and this is because the column wasn't needed in the main analysis.
 2. Heading Changing: The data given has heading that are not suitable or easily analysed in MYSQL, hence some headings was changed such that space " " was substituted with underscore "_". This was done in Excel.
-3. Data Query and Analysis: MYSQL was used to query data and perform the required data analysis.
+3. Calculated Column: Required column needed for analysis that was not primarity from the table was derived; such as Revenue (unit price * order quantity)
+4. Data Query and Analysis: MYSQL was used to query data and perform the required data analysis.
 ## ANSWERS TO TASK
 ## Question 1: Which product category had the highest sales?
 ```
@@ -80,4 +81,52 @@ region                  | total_sales
 Nunavut                 | 116376.4835
 Northwest Territories   | 800847.3295
 Yukon                   | 975867.3710
+```
+## Question 3: What were the total sales of appliances in Ontario?
+```
+SELECT product_sub_category, SUM(sales) AS Total_sales
+FROM kms_table
+WHERE region = 'Ontario' AND product_sub_category = 'appliances'; -- Answer: 202346.84000000003
+```
+RESULT
+```
+product_sub_category | total_sales
+---------------------+-------------
+appliances           | 202346.84000000003
+```
+## Question 4: Advise the management of KMS on what to do to increase the revenue from the bottom 10 customers
+There is no revenue (unit price * order quantity) so let's add it to the table i.e calculated column
+```
+    -- To make the table
+ALTER TABLE kms_table
+ADD COLUMN Revenue DECIMAL(10,2);
+				-- Insert values
+UPDATE kms_table
+SET Revenue = (Unit_price * order_quantity);
+				-- Let's see
+SELECT unit_price, order_quantity, revenue
+FROM kms_table; -- Done
+```
+To see the bottom 10 customers according to revenue
+```
+SELECT customer_name, SUM(revenue) AS Total_revenue
+FROM kms_table
+GROUP BY customer_name
+ORDER BY Total_revenue ASC
+LIMIT 10; -- Jeremy Farry, Natalie DeCherney, Nicole Fjeld'Katrina Edelman, Dorothy Dickinson, Christine Kargatis, Eric Murdock, Chris McAfee, Anne McFarland, and Rick Huthwaite are the customers with lowest revenue.
+```
+RESULT
+```
+customer_name       | Total_revenue
+--------------------+-------------         
+"Jeremy Farry"      | 85.72
+"Natalie DeCherney" | 125.90
+"Nicole Fjeld"      | 153.03
+"Katrina Edelman"   | 180.76
+"Dorothy Dickinson" | 198.08
+"Christine Kargatis"| 293.22
+"Eric Murdock"      | 343.328
+"Chris McAfee"      | 350.18
+"Rick Huthwaite"    | 415.82
+"Mark Hamilton"     | 450.99
 ```
