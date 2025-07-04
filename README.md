@@ -18,6 +18,7 @@ CASE SCENARIO 1
 3. What were the total sales of appliances in Ontario? 
 4. Advise the management of KMS on what to do to increase the revenue from the bottom 10 customers 
 5. KMS incurred the most shipping cost using which shipping method?
+
 CASE SCENARIO 2
 7. Who are the most valuable customers, and what products or services do they typically purchase? 
 8. Which small business customer had the highest sales? 
