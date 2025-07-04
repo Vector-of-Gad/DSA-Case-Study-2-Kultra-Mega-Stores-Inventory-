@@ -100,12 +100,13 @@ There is no revenue (unit price * order quantity) so let's add it to the table i
     -- To make the table
 ALTER TABLE kms_table
 ADD COLUMN Revenue DECIMAL(10,2);
-				-- Insert values
+    -- Insert values
 UPDATE kms_table
 SET Revenue = (Unit_price * order_quantity);
-				-- Let's see
+    -- Let's see
 SELECT unit_price, order_quantity, revenue
-FROM kms_table; -- Done
+FROM kms_table;
+    -- Done
 ```
 To see the bottom 10 customers according to revenue
 ```
@@ -113,7 +114,7 @@ SELECT customer_name, SUM(revenue) AS Total_revenue
 FROM kms_table
 GROUP BY customer_name
 ORDER BY Total_revenue ASC
-LIMIT 10; -- Jeremy Farry, Natalie DeCherney, Nicole Fjeld'Katrina Edelman, Dorothy Dickinson, Christine Kargatis, Eric Murdock, Chris McAfee, Anne McFarland, and Rick Huthwaite are the customers with lowest revenue.
+LIMIT 10; -- Jeremy Farry, Natalie DeCherney, Nicole Fjeld, Katrina Edelman, Dorothy Dickinson, Christine Kargatis, Eric Murdock, Chris McAfee, Anne McFarland, and Rick Huthwaite are the customers with lowest revenue.
 ```
 RESULT
 ```
@@ -129,4 +130,42 @@ customer_name       | Total_revenue
 "Chris McAfee"      | 350.18
 "Rick Huthwaite"    | 415.82
 "Mark Hamilton"     | 450.99
+```
+INSIGHT: 
+1. An increase in the discount for these specific 10, which will increase the quantity of goods ordered
+2. Reduction in the shipping cost 
+3. Make only Express Air ship mode available as it is averagely the cheapest
+   
+## Question 5: KMS incurred the most shipping cost using which shipping method?
+```
+SELECT ship_mode, SUM(shipping_cost) AS Sum_of_shipping_cost
+FROM kms_table
+GROUP BY ship_mode
+ORDER BY Sum_of_shipping_cost DESC
+LIMIT 1; -- Using the delivery truck mode
+```
+RESULT 
+```
+ship_mode       | Sum_of_shipping_cost
+----------------+------------------------------
+Delivery Truck  | 51971.94
+```
+
+## Question 6: Who are the most valuable customers, and what products or services do they typically purchase? 
+```
+SELECT customer_name, SUM(revenue) AS Total_revenue
+FROM kms_table
+GROUP BY customer_name
+ORDER BY Total_revenue DESC 
+LIMIT 5; -- The top 5 most valuable customers are Emily Phan, Deborah Brumfield, Sylvia Foulston, Roy Skaria, Alejandro Grove
+```
+RESULT
+```
+customer_name       | total_customer_sales
+--------------------+---------------------
+Emily Phan          | 117124.438
+Deborah Brumfield   | 97433.1355
+Roy Skaria          | 92542.1530
+Sylvia Foulston     | 88875.7575
+Grant Carroll       | 88417.0025
 ```
