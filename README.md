@@ -18,10 +18,30 @@ CASE SCENARIO 1
 3. What were the total sales of appliances in Ontario? 
 4. Advise the management of KMS on what to do to increase the revenue from the bottom 10 customers 
 5. KMS incurred the most shipping cost using which shipping method?
+ 
  CASE SCENARIO 2
+
 6. Who are the most valuable customers, and what products or services do they typically purchase? 
 7. Which small business customer had the highest sales? 
 8. Which Corporate Customer placed the most number of orders in 2009 – 2012? 
 9. Which consumer customer was the most profitable one? 
 10. Which customer returned items, and what segment do they belong to? 
 11. If the delivery truck is the most economical but the slowest shipping method and Express Air is the fastest but the most expensive one, do you think the company appropriately spent shipping costs based on the Order Priority? Explain your answer
+## DATA ANALYSIS PROCESSES
+There was inconsistency in the raw data number of rows in Excel and in MYSQL. It was found out that a particular column has many blank values. 
+1. Data Cleaning: To improve the data integrity, the column with blank values was deleted using excel and this is because the column wasn't needed in the main analysis.
+2. 
+## ANSWERS TO TASK
+##Question 1: Which product category had the highest sales?
+```
+SELECT product_category, SUM(sales) AS Total_sales
+FROM kms_table
+GROUP BY product_category
+ORDER BY total_sales DESC; -- Answer: Technology product category has the highest sales
+```
+RESULT
+```
+product_category | total_sales
+-----------------+-------------
+Technology       | 5984248.18
+```
