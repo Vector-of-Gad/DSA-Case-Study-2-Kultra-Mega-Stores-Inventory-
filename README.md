@@ -153,19 +153,20 @@ Delivery Truck  | 51971.94
 
 ## Question 6: Who are the most valuable customers, and what products or services do they typically purchase? 
 ```
-SELECT customer_name, SUM(revenue) AS Total_revenue
+SELECT customer_name 
 FROM kms_table
 GROUP BY customer_name
-ORDER BY Total_revenue DESC 
+ORDER BY SUM(revenue) DESC 
 LIMIT 5; -- The top 5 most valuable customers are Emily Phan, Deborah Brumfield, Sylvia Foulston, Roy Skaria, Alejandro Grove
 ```
 RESULT
 ```
-customer_name       | total_customer_sales
---------------------+---------------------
-Emily Phan          | 117124.438
-Deborah Brumfield   | 97433.1355
-Roy Skaria          | 92542.1530
-Sylvia Foulston     | 88875.7575
-Grant Carroll       | 88417.0025
+customer_name       
+--------------------
+Emily Phan
+Deborah Brumfield
+Sylvia Foulston
+Roy Skaria
+Alejandro Grove
 ```
+## Question 7: Which small business customer had the highest sales?
