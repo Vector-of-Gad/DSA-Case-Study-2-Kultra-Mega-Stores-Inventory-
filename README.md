@@ -18,11 +18,10 @@ CASE SCENARIO 1
 3. What were the total sales of appliances in Ontario? 
 4. Advise the management of KMS on what to do to increase the revenue from the bottom 10 customers 
 5. KMS incurred the most shipping cost using which shipping method?
-
 CASE SCENARIO 2
-7. Who are the most valuable customers, and what products or services do they typically purchase? 
-8. Which small business customer had the highest sales? 
-9. Which Corporate Customer placed the most number of orders in 2009 – 2012? 
-10. Which consumer customer was the most profitable one? 
-11. Which customer returned items, and what segment do they belong to? 
-12. If the delivery truck is the most economical but the slowest shipping method and Express Air is the fastest but the most expensive one, do you think the company appropriately spent shipping costs based on the Order Priority? Explain your answer
+6. Who are the most valuable customers, and what products or services do they typically purchase? 
+7. Which small business customer had the highest sales? 
+8. Which Corporate Customer placed the most number of orders in 2009 – 2012? 
+9. Which consumer customer was the most profitable one? 
+10. Which customer returned items, and what segment do they belong to? 
+11. If the delivery truck is the most economical but the slowest shipping method and Express Air is the fastest but the most expensive one, do you think the company appropriately spent shipping costs based on the Order Priority? Explain your answer
