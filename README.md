@@ -207,6 +207,52 @@ GROUP BY customer_name
 ORDER BY SUM(Order_Quantity) DESC
 LIMIT 1; -- Answer: Roy Skaria
 ```
+```
 customer_name  
 ----------------
-Roy Skaria    
+Roy Skaria   
+```
+## Question 9: Which consumer customer was the most profitable one? 
+```
+SELECT   customer_name, SUM(profit) AS total_customer_profit
+FROM kms_table
+ORDER BY total_customer_profit DESC
+LIMIT 1; -- Answer: Emily Phan
+```
+RESULT
+```
+customer_name | total_customer_profit
+--------------+----------------------
+Emily Phan    | 34005.44
+```
+## Question 10: Which customer returned items, and what segment do they belong to? 
+Answer: Not Enough Data For This Analysis
+## Question 11: If the delivery truck is the most economical but the slowest shipping method and Express Air is the fastest but the most expensive one, do you think the company appropriately spent shipping costs based on the Order Priority? Explain your answer
+```
+SELECT order_priority, ship_mode, SUM(shipping_cost) AS total_shipping_cost_for_priority, COUNT(order_id) AS number_of_orders_for_priority_ship_mode
+FROM kms_table
+GROUP BY order_priority, ship_mode
+ORDER BYorder_priority ASC, total_shipping_cost_for_priority DESC;
+```
+RESULT
+```
+order_priority | ship_mode      | total_shipping_cost_for_priority | number_of_orders_for_priority_ship_mode
+---------------+----------------+----------------------------------+-----------------------------------------
+Critical       | Delivery Truck | 10783.82                         | 228
+Critical       | Regular Air    | 8586.76                          | 1180
+Critical       | Express Air    | 1742.10                          | 200
+High           | Delivery Truck | 11206.88                         | 248
+High           | Regular Air    | 10005.01                         | 1308
+High           | Express Air    | 1453.53                          | 212
+Low            | Delivery Truck | 11131.61                         | 250
+Low            | Regular Air    | 10263.62                         | 1280
+Low            | Express Air    | 1551.63                          | 190
+Medium         | Delivery Truck | 9461.62                          | 205
+Medium         | Regular Air    | 9418.72                          | 1225
+Medium         | Express Air    | 1633.59                          | 201
+Not Specified  | Regular Air    | 9734.08                          | 1277
+Not Specified  | Delivery Truck | 9388.01                          | 215
+Not Specified  | Express Air    | 1470.06                          | 180
+```
+Answer: Based on the analysis, it appears that KMS is NOT optimally or appropriately spending shipping costs based on Order Priority, particularly for high-priority orders.
+
