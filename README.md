@@ -162,12 +162,28 @@ LIMIT 5; -- The top 5 most valuable customers are Emily Phan, Deborah Brumfield,
 RESULT
 ```
 customer_name         | Total_revenue
-----------------------|--------------
+----------------------+--------------
 Emily Phan            |    118906.33
 Deborah Brumfield     |    100784.20
 Sylvia Foulston       |    95458.40
 Roy Skaria,           |    90955.86
 Alejandro Grove       |    86448.33
+
+```
+For products or services they purchase
+```
+SELECT DISTINCT(product_category)
+FROM kms_table
+WHERE customer_name IN ('Emily Phan', 'Deborah Brumfield', 'Sylvia Foulston', 'Roy Skaria', 'Alejandro Grove')
+GROUP BY product_category;
+```
+RESULT
+```
+product_category
+---------------------
+Technology
+Office Supplies
+Furniture
 
 ```
 ## Question 7: Which small business customer had the highest sales?
