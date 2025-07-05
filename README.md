@@ -45,7 +45,7 @@ RESULT
 ```
 product_category | total_sales
 -----------------+-------------
-Technology       | 5984248.18
+Technology       | 5984248.181999991
 ```
 ## Question 2: What are the Top 3 and Bottom 3 regions in terms of sales?
 Top 3
@@ -61,9 +61,9 @@ RESULT
 ```
 region             | total_sales
 -------------------+--------------
-West               | 3597549.2755
-Ontario            | 3063212.4795
-Prarie             | 2837304.6015
+West               | 3597549.2754999986
+Ontario            | 3063212.4794999994
+Prarie             | 2837304.6014999985
 ```
 Bottom 3
 ```
@@ -78,9 +78,9 @@ RESULT
 ```
 region                  | total_sales
 ------------------------+--------------
-Nunavut                 | 116376.4835
-Northwest Territories   | 800847.3295
-Yukon                   | 975867.3710
+Nunavut                 |116376.4835
+Northwest Territories   | 800847.3295000001
+Yukon                   | 975867.370999999
 ```
 ## Question 3: What were the total sales of appliances in Ontario?
 ```
@@ -114,7 +114,7 @@ SELECT customer_name, SUM(revenue) AS Total_revenue
 FROM kms_table
 GROUP BY customer_name
 ORDER BY Total_revenue ASC
-LIMIT 10; -- Jeremy Farry, Natalie DeCherney, Nicole Fjeld, Katrina Edelman, Dorothy Dickinson, Christine Kargatis, Eric Murdock, Chris McAfee, Anne McFarland, and Rick Huthwaite are the customers with lowest revenue.
+LIMIT 10; -- Jeremy Farry, Natalie DeCherney, Nicole Fjeld'Katrina Edelman, Dorothy Dickinson, Christine Kargatis, Eric Murdock, Chris McAfee, Anne McFarland, and Rick Huthwaite are the customers with lowest revenue.
 ```
 RESULT
 ```
@@ -124,12 +124,12 @@ customer_name       | Total_revenue
 "Natalie DeCherney" | 125.90
 "Nicole Fjeld"      | 153.03
 "Katrina Edelman"   | 180.76
-"Dorothy Dickinson" | 198.08
-"Christine Kargatis"| 293.22
-"Eric Murdock"      | 343.328
-"Chris McAfee"      | 350.18
-"Rick Huthwaite"    | 415.82
-"Mark Hamilton"     | 450.99
+"Dorothy Dickinson" | 201.16
+"Christine Kargatis"| 293.46
+"Eric Murdock"      | 333.14
+"Chris McAfee"      | 355.50
+"Anne McFarland"    | 421.37
+"Rick Huthwaite"    | 426.00
 ```
 INSIGHT: 
 1. An increase in the discount for these specific 10, which will increase the quantity of goods ordered
@@ -148,7 +148,7 @@ RESULT
 ```
 ship_mode       | Sum_of_shipping_cost
 ----------------+------------------------------
-Delivery Truck  | 51971.94
+Delivery Truck  | 51971.939999999784
 ```
 
 ## Question 6: Who are the most valuable customers, and what products or services do they typically purchase? 
@@ -161,13 +161,14 @@ LIMIT 5; -- The top 5 most valuable customers are Emily Phan, Deborah Brumfield,
 ```
 RESULT
 ```
-customer_name       
---------------------
-Emily Phan
-Deborah Brumfield
-Sylvia Foulston
-Roy Skaria
-Alejandro Grove
+customer_name         | Total_revenue
+----------------------|--------------
+Emily Phan            |    118906.33
+Deborah Brumfield     |    100784.20
+Sylvia Foulston       |    95458.40
+Roy Skaria,           |    90955.86
+Alejandro Grove       |    86448.33
+
 ```
 ## Question 7: Which small business customer had the highest sales?
 ```
