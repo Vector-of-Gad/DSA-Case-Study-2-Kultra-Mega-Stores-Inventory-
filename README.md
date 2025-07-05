@@ -217,15 +217,18 @@ FROM kms_table; -- to confirm what has been done
 ```
 Now to the number of orders:
 ```
-SELECT customer_name
+SELECT customer_name, SUM(Order_Quantity) AS Number_of_orders
 FROM kms_table
 WHERE ORDER_YEAR IN ('2009', '2010', '2011', '2012') AND customer_segment = 'Corporate'
 GROUP BY customer_name
-ORDER BY SUM(Order_Quantity) DESC
+ORDER BY Number_of_orders DESC
 LIMIT 1; -- Answer: Roy Skaria
 ```
 ```
-customer_name  
+customer_name   | Number_of_orders
+----------------+------------------
+'Roy Skaria'    | '773'
+
 ----------------
 Roy Skaria   
 ```
@@ -233,6 +236,7 @@ Roy Skaria
 ```
 SELECT   customer_name, SUM(profit) AS total_customer_profit
 FROM kms_table
+GROUP BY customer_name
 ORDER BY total_customer_profit DESC
 LIMIT 1; -- Answer: Emily Phan
 ```
